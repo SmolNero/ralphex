@@ -69,7 +69,7 @@ body {
 
 .chart {
   position: relative;
-  width: 1000px;
+  width: 1160px;
   height: 720px;
   margin: 0 auto;
   background:
@@ -225,7 +225,7 @@ button.ghost {
 
 @media (max-width: 900px) {
   .chart {
-    width: 960px;
+    width: 1120px;
     height: 720px;
   }
 

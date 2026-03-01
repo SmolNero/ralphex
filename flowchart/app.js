@@ -12,7 +12,7 @@ const edges = [
   { id: 'e2-3', from: 'step-2', to: 'step-3', fromAnchor: 'right', toAnchor: 'left' },
   { id: 'e3-4', from: 'step-3', to: 'step-4', fromAnchor: 'bottom', toAnchor: 'top' },
   { id: 'e4-5', from: 'step-4', to: 'step-5', fromAnchor: 'bottom', toAnchor: 'top' },
-  { id: 'e4-12', from: 'step-4', to: 'step-12', fromAnchor: 'left', toAnchor: 'top' },
+  { id: 'e4-12', from: 'step-4', to: 'step-12', fromAnchor: 'right', toAnchor: 'left' },
   { id: 'e5-6', from: 'step-5', to: 'step-6', fromAnchor: 'left', toAnchor: 'right' },
   { id: 'e6-7', from: 'step-6', to: 'step-7', fromAnchor: 'left', toAnchor: 'right' },
   { id: 'e7-8', from: 'step-7', to: 'step-8', fromAnchor: 'bottom', toAnchor: 'top' },
@@ -24,7 +24,7 @@ const edges = [
 
 const labels = [
   { id: 'label-yes-quality', edge: 'e4-5', offsetX: 16, offsetY: -18 },
-  { id: 'label-no-quality', edge: 'e4-12', offsetX: -26, offsetY: 12 },
+  { id: 'label-no-quality', edge: 'e4-12', offsetX: 16, offsetY: -18 },
   { id: 'label-yes', edge: 'e10-5', offsetX: -18, offsetY: -20 },
   { id: 'label-no', edge: 'e10-11', offsetX: 18, offsetY: 10 },
 ];
