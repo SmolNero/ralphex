@@ -1,0 +1,13 @@
+# Ralph Progress Log
+Started: Sat Feb 28 22:30:48 MST 2026
+---
+## Sat Feb 28 22:32:26 MST 2026 - DEMO-001
+Thread: n/a
+- What was implemented
+  - Marked DEMO-001 as complete since `docs/ralph-demo.txt` and README note already exist.
+- Files changed
+  - prd.json
+  - progress.txt
+- Learnings for future iterations:
+  - None
+---

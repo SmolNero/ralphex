@@ -1,0 +1,20 @@
+{
+  "project": "RalphCodexDemo",
+  "branchName": "ralph/demo",
+  "description": "Demo story to validate the Ralph loop",
+  "userStories": [
+    {
+      "id": "DEMO-001",
+      "title": "Add demo heartbeat file",
+      "description": "As a user, I want a small proof that the loop can change a file and commit.",
+      "acceptanceCriteria": [
+        "Create docs/ralph-demo.txt with a short line confirming the loop ran",
+        "Add a brief note in README.md pointing to docs/ralph-demo.txt",
+        "Typecheck passes"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "Keep changes minimal and safe for this repo; skip tests if not configured."
+    }
+  ]
+}
