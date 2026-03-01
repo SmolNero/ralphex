@@ -65,7 +65,14 @@ if [ ! -f "$SCRIPT_DIR/ralph.sh" ]; then
   fi
 fi
 
-: "${CODEX_DRIVER:=opencode}"
+if [ -z "${CODEX_DRIVER:-}" ]; then
+  if command -v opencode >/dev/null 2>&1 && opencode auth list 2>&1 | grep -q "OpenAI"; then
+    CODEX_DRIVER=opencode
+  else
+    CODEX_DRIVER=codex
+  fi
+fi
+export CODEX_DRIVER
 : "${CODEX_MODEL:=openai/gpt-5.2-codex}"
 
 print_banner() {
