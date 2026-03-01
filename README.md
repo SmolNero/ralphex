@@ -186,20 +186,17 @@ RALPH_FORCE=1 ./ralph.sh
 | `prd.json` | User stories with `passes` status (the task list) |
 | `prd.json.example` | Example PRD format for reference |
 | `progress.txt` | Append-only learnings for future iterations |
-| `flowchart/` | Interactive visualization of how Ralph works |
+| `flowchart/` | Standalone flowchart explaining the loop |
 
 ## Flowchart
 
-[![Ralph Flowchart](ralph-flowchart.png)](https://snarktank.github.io/ralph/)
+![Ralphex Flowchart](ralph-flowchart.png)
 
-**[View Interactive Flowchart](https://snarktank.github.io/ralph/)** - Click through to see each step with animations.
-
-The `flowchart/` directory contains the source code. To run locally:
+Open `flowchart/index.html` directly, or run a local server:
 
 ```bash
 cd flowchart
-npm install
-npm run dev
+python3 -m http.server 5173
 ```
 
 ## Critical Concepts

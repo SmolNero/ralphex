@@ -2,12 +2,96 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>How Ralphex Works with GPT Codex</title>
+    <meta
+      name="description"
+      content="Ralphex flowchart: autonomous GPT Codex loop for completing PRDs."
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <main class="page">
+      <header class="hero">
+        <div class="eyebrow">Ralphex</div>
+        <h1>How Ralphex Works with GPT Codex</h1>
+        <p>Autonomous GPT Codex loop for completing PRDs</p>
+      </header>
+
+      <section class="chart-wrap">
+        <div class="chart" id="chart">
+          <svg class="lines" id="lines" aria-hidden="true">
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="8"
+                markerHeight="8"
+                orient="auto-start-reverse"
+              >
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink)" />
+              </marker>
+            </defs>
+          </svg>
+
+          <div class="node setup" id="step-1" data-step="1" style="--x: 40; --y: 30">
+            <div class="node-title">Write a PRD</div>
+            <div class="node-sub">Define the outcome</div>
+          </div>
+          <div class="node setup" id="step-2" data-step="2" style="--x: 40; --y: 130">
+            <div class="node-title">Create prd.json</div>
+            <div class="node-sub">Split into small stories</div>
+          </div>
+          <div class="node setup" id="step-3" data-step="3" style="--x: 40; --y: 230">
+            <div class="node-title">Run ralphex</div>
+            <div class="node-sub">Start the Codex loop</div>
+          </div>
+
+          <div class="node loop" id="step-4" data-step="4" style="--x: 40; --y: 360">
+            <div class="node-title">Codex picks a story</div>
+            <div class="node-sub">Finds next passes: false</div>
+          </div>
+          <div class="node loop" id="step-5" data-step="5" style="--x: 330; --y: 300">
+            <div class="node-title">Implements change</div>
+            <div class="node-sub">Writes code</div>
+          </div>
+          <div class="node loop" id="step-6" data-step="6" style="--x: 620; --y: 350">
+            <div class="node-title">Runs checks</div>
+            <div class="node-sub">Typecheck, tests</div>
+          </div>
+          <div class="node loop" id="step-7" data-step="7" style="--x: 620; --y: 480">
+            <div class="node-title">Commits changes</div>
+            <div class="node-sub">If checks pass</div>
+          </div>
+          <div class="node loop" id="step-8" data-step="8" style="--x: 330; --y: 520">
+            <div class="node-title">Updates state</div>
+            <div class="node-sub">prd.json + progress.txt</div>
+          </div>
+          <div class="node decision" id="step-9" data-step="9" style="--x: 40; --y: 520">
+            <div class="node-title">More stories?</div>
+            <div class="node-sub">Loop or finish</div>
+          </div>
+          <div class="node done" id="step-10" data-step="10" style="--x: 330; --y: 660">
+            <div class="node-title">Done</div>
+            <div class="node-sub">All stories complete</div>
+          </div>
+
+          <div class="edge-label" id="label-yes" data-edge="e9-4">Yes</div>
+          <div class="edge-label" id="label-no" data-edge="e9-10">No</div>
+        </div>
+      </section>
+
+      <footer class="controls">
+        <button id="prev" type="button">Previous</button>
+        <div class="step">Step <span id="step-count">1</span> of 10</div>
+        <button id="next" type="button">Next</button>
+        <button id="reset" type="button" class="ghost">Reset</button>
+      </footer>
+      <p class="hint">Click Next to reveal each step</p>
+    </main>
+
+    <script src="app.js"></script>
   </body>
 </html>

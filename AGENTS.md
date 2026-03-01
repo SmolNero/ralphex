@@ -7,11 +7,8 @@ Ralph is an autonomous GPT Codex loop for ChatGPT Pro accounts, tuned for budget
 ## Commands
 
 ```bash
-# Run the flowchart dev server
-cd flowchart && npm run dev
-
-# Build the flowchart
-cd flowchart && npm run build
+# Run the flowchart locally
+cd flowchart && python3 -m http.server 5173
 
 # Run Ralph (codex only, infinite by default)
 ./ralph.sh [max_iterations]
@@ -25,17 +22,16 @@ cd flowchart && npm run build
 - `ralph.sh` - The bash loop that spawns GPT Codex instances (codex only)
 - `CODEX.md` - Instructions given to each GPT Codex instance
 - `prd.json.example` - Example PRD format
-- `flowchart/` - Interactive React Flow diagram explaining how Ralph works
+- `flowchart/` - Standalone flowchart explaining how Ralph works
 
 ## Flowchart
 
-The `flowchart/` directory contains an interactive visualization built with React Flow. It's designed for presentations - click through to reveal each step with animations.
+The `flowchart/` directory contains a standalone HTML flowchart designed for presentations. Click through to reveal each step with animations.
 
 To run locally:
 ```bash
 cd flowchart
-npm install
-npm run dev
+python3 -m http.server 5173
 ```
 
 ## Patterns

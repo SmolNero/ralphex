@@ -1,0 +1,228 @@
+:root {
+  color-scheme: light;
+  --ink: #1d1d1f;
+  --muted: #5e5e66;
+  --paper: #fdfcfa;
+  --panel: #ffffff;
+  --setup: #e8f0ff;
+  --setup-border: #3b6dd8;
+  --loop: #f2f2f2;
+  --loop-border: #6d6d6d;
+  --decision: #fff2d7;
+  --decision-border: #d49c26;
+  --done: #e7f8ed;
+  --done-border: #2f8f57;
+  --accent: #1e64ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Gill Sans", "Trebuchet MS", "Helvetica Neue", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, #dfe9ff 0%, transparent 40%),
+    radial-gradient(circle at 90% 0%, #ffe6c7 0%, transparent 45%),
+    linear-gradient(180deg, #f7f8fc 0%, #f4f2ef 100%);
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 36px 24px 48px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.hero h1 {
+  font-family: "Baskerville", "Georgia", serif;
+  font-size: clamp(28px, 4vw, 44px);
+  margin: 10px 0 6px;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.chart-wrap {
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.chart {
+  position: relative;
+  width: 980px;
+  height: 760px;
+  margin: 0 auto;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.35)),
+    repeating-radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.04) 0, rgba(0, 0, 0, 0.04) 1px, transparent 1px, transparent 22px);
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(22, 28, 45, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.node {
+  position: absolute;
+  left: calc(var(--x) * 1px);
+  top: calc(var(--y) * 1px);
+  width: 230px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--panel);
+  border: 2px solid #ccc;
+  box-shadow: 0 10px 20px rgba(30, 30, 30, 0.12);
+  transform: translate3d(0, 8px, 0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.node.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+}
+
+.node::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  opacity: 0.14;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), transparent 60%);
+  pointer-events: none;
+}
+
+.node-title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.node-sub {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.node.setup {
+  background: var(--setup);
+  border-color: var(--setup-border);
+}
+
+.node.loop {
+  background: var(--loop);
+  border-color: var(--loop-border);
+}
+
+.node.decision {
+  background: var(--decision);
+  border-color: var(--decision-border);
+}
+
+.node.done {
+  background: var(--done);
+  border-color: var(--done-border);
+}
+
+.edge-label {
+  position: absolute;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.edge-label.is-visible {
+  opacity: 1;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+button {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 8px 18px rgba(30, 100, 255, 0.3);
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(30, 100, 255, 0.36);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
+
+.step {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.hint {
+  text-align: center;
+  color: var(--muted);
+  margin: 12px 0 0;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .chart {
+    width: 920px;
+    height: 760px;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+  }
+}
