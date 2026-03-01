@@ -7,21 +7,21 @@ const prevButton = document.getElementById('prev');
 const resetButton = document.getElementById('reset');
 
 const edges = [
-  { id: 'e1-2', from: 'step-1', to: 'step-2', fromAnchor: 'bottom', toAnchor: 'top' },
-  { id: 'e2-3', from: 'step-2', to: 'step-3', fromAnchor: 'bottom', toAnchor: 'top' },
+  { id: 'e1-2', from: 'step-1', to: 'step-2', fromAnchor: 'right', toAnchor: 'left' },
+  { id: 'e2-3', from: 'step-2', to: 'step-3', fromAnchor: 'right', toAnchor: 'left' },
   { id: 'e3-4', from: 'step-3', to: 'step-4', fromAnchor: 'bottom', toAnchor: 'top' },
-  { id: 'e4-5', from: 'step-4', to: 'step-5', fromAnchor: 'right', toAnchor: 'left' },
-  { id: 'e5-6', from: 'step-5', to: 'step-6', fromAnchor: 'right', toAnchor: 'left' },
+  { id: 'e4-5', from: 'step-4', to: 'step-5', fromAnchor: 'left', toAnchor: 'right' },
+  { id: 'e5-6', from: 'step-5', to: 'step-6', fromAnchor: 'left', toAnchor: 'right' },
   { id: 'e6-7', from: 'step-6', to: 'step-7', fromAnchor: 'bottom', toAnchor: 'top' },
-  { id: 'e7-8', from: 'step-7', to: 'step-8', fromAnchor: 'left', toAnchor: 'right' },
-  { id: 'e8-9', from: 'step-8', to: 'step-9', fromAnchor: 'left', toAnchor: 'right' },
+  { id: 'e7-8', from: 'step-7', to: 'step-8', fromAnchor: 'right', toAnchor: 'left' },
+  { id: 'e8-9', from: 'step-8', to: 'step-9', fromAnchor: 'right', toAnchor: 'left' },
   { id: 'e9-4', from: 'step-9', to: 'step-4', fromAnchor: 'top', toAnchor: 'bottom' },
   { id: 'e9-10', from: 'step-9', to: 'step-10', fromAnchor: 'bottom', toAnchor: 'top' },
 ];
 
 const labels = [
-  { id: 'label-yes', edge: 'e9-4', offsetX: -12, offsetY: -16 },
-  { id: 'label-no', edge: 'e9-10', offsetX: 12, offsetY: 8 },
+  { id: 'label-yes', edge: 'e9-4', offsetX: -18, offsetY: -20 },
+  { id: 'label-no', edge: 'e9-10', offsetX: 18, offsetY: 10 },
 ];
 
 const edgeElements = new Map();
