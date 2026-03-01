@@ -49,6 +49,13 @@ If `OPENAI_API_KEY` is set, `ralph.sh` will attempt a Codex auto-login.
 
 ## Quick Start
 
+0. If you haven't yet, clone the repo:
+
+   ```bash
+   git clone https://github.com/SmolNero/ralphex
+   cd ralphex
+   ```
+
 1. Copy the runner into your project root:
 
    ```bash
