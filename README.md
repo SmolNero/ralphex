@@ -1,7 +1,5 @@
 # Ralphex
 
-![Ralph](ralph.webp)
-
 Ralphex is an autonomous GPT Codex agent loop for ChatGPT Pro accounts, tuned for budget-friendly iterations. Each iteration is a fresh Codex instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
 Demo heartbeat: see `docs/ralph-demo.txt`.
 
