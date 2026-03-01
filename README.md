@@ -1,4 +1,4 @@
-# Ralph - codex
+# Ralph
 
 ![Ralph](ralph.webp)
 
