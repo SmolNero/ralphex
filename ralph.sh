@@ -42,6 +42,16 @@ CODEX_DRIVER=${CODEX_DRIVER:-codex}
 CODEX_MODEL=${CODEX_MODEL:-openai/gpt-5.2-codex}
 CODEX_AGENT=${CODEX_AGENT:-build}
 
+has_incomplete_stories() {
+  if ! command -v jq >/dev/null 2>&1; then
+    return 0
+  fi
+  if [ ! -f "$PRD_FILE" ]; then
+    return 0
+  fi
+  jq -e '.userStories | map(select(.passes == false)) | length > 0' "$PRD_FILE" >/dev/null 2>&1
+}
+
 if [ ! -f "$PRD_FILE" ]; then
   if [ "${PRD_BOOTSTRAP:-}" == "1" ] && [ -f "$SCRIPT_DIR/prd.json.example" ]; then
     echo "prd.json not found; copying prd.json.example to prd.json"
@@ -206,6 +216,12 @@ else
   fi
 fi
 
+if ! has_incomplete_stories; then
+  echo "Ralph completed all tasks!"
+  echo "Completed at iteration 0 of $MAX_ITERATIONS"
+  exit 0
+fi
+
 i=0
 while true; do
   i=$((i + 1))
@@ -232,7 +248,7 @@ while true; do
     fi
   
   # Check for completion signal
-  if echo "$OUTPUT" | grep -q "<promise>COMPLETE</promise>"; then
+  if echo "$OUTPUT" | grep -q "<promise>COMPLETE</promise>" || ! has_incomplete_stories; then
     echo ""
     echo "Ralph completed all tasks!"
     echo "Completed at iteration $i of $MAX_ITERATIONS"

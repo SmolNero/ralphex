@@ -4,7 +4,7 @@
   <img src="assets/ralphex_ascii.png" alt="ralphex_repo_logo" width="770" style="max-width: 100%; height: auto;" />
 </p>
 
-Ralphex is an autonomous GPT Codex agent loop for ChatGPT Pro accounts, tuned for budget-friendly iterations. Each iteration is a fresh Codex instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
+Ralphex is a GPT Codex/ChatGPT Pro fork of snarktank/ralph, tuned for budget-friendly iterations without Amp or Claude Code subscriptions. Each iteration is a fresh Codex instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
 
 ## Start Here
 
@@ -14,25 +14,38 @@ If you do not know which option to pick, use one of these:
 - **OpenAI API key**: `export OPENAI_API_KEY=...` then run `./ralphex`
 - **Already logged into Codex CLI**: run `./ralphex`
 
+## Why Ralphex?
+
+The original Ralph loop targets Amp or Claude Code. Ralphex swaps that for GPT Codex via OpenCode OAuth, so if you already have ChatGPT Pro you can run the same loop without extra subscriptions or API credits.
+
+If this saves you money, consider starring the repo.
+
 ## Features
 
 - One-command runner: `./ralphex` starts the loop with Codex/OpenCode
 - OpenCode fallback when Codex CLI is not logged in
 - Safe on/off switch: `ralphex on`, `ralphex off`, `ralphex status`
-- Clean stop when all stories pass (`<promise>COMPLETE</promise>`)
+- Clean stop when `prd.json` has no remaining `passes: false` stories (checked via `jq`)
 - Runs without approval prompts (full trust loop)
 
 ## Prerequisites
 
-- GPT Codex CLI or OpenCode wrapper installed and authenticated
-  - Install Codex: `npm install -g @openai/codex`
-  - Authenticate (Codex Pro): `codex login`
-  - Authenticate (API key): `printenv OPENAI_API_KEY | codex login --with-api-key`
-  - Auto-login support: if `OPENAI_API_KEY` is set, `ralph.sh` will attempt a login automatically
-  - External auth (OpenCode): set `CODEX_SKIP_LOGIN_CHECK=1`
-  - OpenCode driver: set `CODEX_DRIVER=opencode` to use OpenCode OAuth
+- Install a runner:
+  - Codex CLI: `npm install -g @openai/codex`
+  - OpenCode: https://opencode.ai
 - `jq` installed (`brew install jq` on macOS)
 - A git repository for your project
+
+Authentication (pick one):
+
+| If you have... | Do this |
+| --- | --- |
+| ChatGPT Pro (OpenCode OAuth) | `opencode auth login` then run `./ralphex` |
+| OpenAI API key | `export OPENAI_API_KEY=...` then `codex login --with-api-key` |
+| Codex CLI already logged in | run `./ralphex` |
+| External auth or CI | set `CODEX_SKIP_LOGIN_CHECK=1` |
+
+If `OPENAI_API_KEY` is set, `ralph.sh` will attempt a Codex auto-login.
 
 ## Quick Start
 
@@ -178,7 +191,7 @@ Frontend stories must include "Verify in browser using dev-browser skill" in acc
 
 ### Stop Condition
 
-When all stories have `passes: true`, Ralphex outputs `<promise>COMPLETE</promise>` and the loop exits.
+The loop stops when `prd.json` has no remaining `passes: false` stories (checked via `jq`). If the agent outputs `<promise>COMPLETE</promise>`, the loop also stops.
 
 ## Debugging
 
