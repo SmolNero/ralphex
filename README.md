@@ -47,33 +47,6 @@ If you do not know which option to pick, use one of these:
 3. Add a `prd.json` to your project root.
 4. Run: `./ralphex`
 
-## Run From Anywhere
-
-If `ralphex` is on your PATH, you can run it from any directory. It will locate the Ralphex project folder and execute from there.
-
-Add `ralphex` to your PATH (one-time setup):
-```bash
-# Add the ralphex directory to PATH
-export PATH="/path/to/ralphex:$PATH"
-
-# Or symlink the binary into /usr/local/bin
-ln -s /path/to/ralphex/ralphex /usr/local/bin/ralphex
-```
-
-Recommended (fast, explicit):
-```bash
-export RALPHEX_HOME="/path/to/ralphex"
-ralphex
-```
-
-Optional (search-based):
-```bash
-export RALPHEX_SEARCH_ROOTS="$HOME:/Users/Shared"
-ralphex
-```
-
-When found, you can still run `ralphex on`, `ralphex off`, or `ralphex status` from anywhere.
-
 ## Workflow
 
 ### 1. Create a PRD
@@ -85,7 +58,6 @@ Create `prd.json` with user stories for the loop. Use `prd.json.example` as a te
 ```bash
 # Primary command (recommended)
 ./ralphex
-
 
 # Toggle Ralphex on/off
 ./ralphex off
@@ -229,6 +201,33 @@ After copying `CODEX.md` to your project, customize it for your project:
 ## Archiving
 
 Ralphex automatically archives previous runs when you start a new feature (different `branchName`). Archives are saved to `archive/YYYY-MM-DD-feature-name/`.
+
+## Run From Anywhere
+
+If `ralphex` is on your PATH, you can run it from any directory. It will locate the Ralphex project folder and execute from there.
+
+Add `ralphex` to your PATH (one-time setup):
+```bash
+# Add the ralphex directory to PATH
+export PATH="/path/to/ralphex:$PATH"
+
+# Or symlink the binary into /usr/local/bin
+ln -s /path/to/ralphex/ralphex /usr/local/bin/ralphex
+```
+
+Recommended (fast, explicit):
+```bash
+export RALPHEX_HOME="/path/to/ralphex"
+ralphex
+```
+
+Optional (search-based):
+```bash
+export RALPHEX_SEARCH_ROOTS="$HOME:/Users/Shared"
+ralphex
+```
+
+When found, you can still run `ralphex on`, `ralphex off`, or `ralphex status` from anywhere.
 
 ## References
 
