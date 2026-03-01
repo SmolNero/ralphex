@@ -1,12 +1,12 @@
 #!/bin/bash
 # Ralph Wiggum - Long-running AI agent loop
-# Usage: ./ralph.sh [--tool amp|claude|codex] [max_iterations]
+# Usage: ./ralph.sh [--tool codex] [max_iterations]
 
 set -e
 
 # Parse arguments
-TOOL="amp"  # Default to amp for backwards compatibility
-MAX_ITERATIONS=10
+TOOL="codex"  # Default to codex
+MAX_ITERATIONS=0
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -28,10 +28,10 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Validate tool choice
-if [[ "$TOOL" != "amp" && "$TOOL" != "claude" && "$TOOL" != "codex" ]]; then
-  echo "Error: Invalid tool '$TOOL'. Must be 'amp', 'claude', or 'codex'."
-  exit 1
+# Enforce codex-only mode
+if [[ "$TOOL" != "codex" ]]; then
+  echo "Note: tool '$TOOL' is disabled; using 'codex' instead."
+  TOOL="codex"
 fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PRD_FILE="$SCRIPT_DIR/prd.json"
@@ -122,7 +122,7 @@ print_banner() {
 
 
 Ralph says: ${greeting}
-Ralph-Codex Loops: ${status}
+Ralphex Loops: ${status}
 EOF
   echo ""
 }
@@ -134,9 +134,9 @@ if [ ! -f "$PROGRESS_FILE" ]; then
 fi
 
 if [ "${RALPH_FORCE:-}" != "1" ]; then
-  if [ "${RALPH_DISABLED:-}" == "1" ] || [ -f "$SCRIPT_DIR/.ralph-disabled" ]; then
+  if [ "${RALPH_DISABLED:-}" == "1" ] || [ -f "$SCRIPT_DIR/.ralph-disabled" ] || [ -f "$SCRIPT_DIR/.ralphex-disabled" ]; then
     print_banner "bi!" "DEACTIVATED 🔴"
-    echo "Ralph is deactivated. Remove .ralph-disabled or set RALPH_FORCE=1 to run."
+    echo "Ralphex is deactivated. Remove .ralphex-disabled (or .ralph-disabled) or set RALPH_FORCE=1 to run."
     exit 0
   fi
 fi
@@ -189,32 +189,42 @@ if [[ "$TOOL" == "codex" ]]; then
 fi
 
 if [[ "$TOOL" == "codex" ]]; then
-  echo "Starting Ralph - Tool: $TOOL ($CODEX_DRIVER) - Max iterations: $MAX_ITERATIONS"
+  if [ "$MAX_ITERATIONS" -eq 0 ]; then
+    echo "Starting Ralph - Tool: $TOOL ($CODEX_DRIVER) - Max iterations: infinite"
+  else
+    echo "Starting Ralph - Tool: $TOOL ($CODEX_DRIVER) - Max iterations: $MAX_ITERATIONS"
+  fi
 else
-  echo "Starting Ralph - Tool: $TOOL - Max iterations: $MAX_ITERATIONS"
+  if [ "$MAX_ITERATIONS" -eq 0 ]; then
+    echo "Starting Ralph - Tool: $TOOL - Max iterations: infinite"
+  else
+    echo "Starting Ralph - Tool: $TOOL - Max iterations: $MAX_ITERATIONS"
+  fi
 fi
 
-for i in $(seq 1 $MAX_ITERATIONS); do
+i=0
+while true; do
+  i=$((i + 1))
+  if [ "$MAX_ITERATIONS" -gt 0 ] && [ "$i" -gt "$MAX_ITERATIONS" ]; then
+    break
+  fi
   echo ""
   echo "==============================================================="
-  echo "  Ralph Iteration $i of $MAX_ITERATIONS ($TOOL)"
+  if [ "$MAX_ITERATIONS" -eq 0 ]; then
+    echo "  Ralph Iteration $i of infinite ($TOOL)"
+  else
+    echo "  Ralph Iteration $i of $MAX_ITERATIONS ($TOOL)"
+  fi
   echo "==============================================================="
 
-  # Run the selected tool with the ralph prompt
-  if [[ "$TOOL" == "amp" ]]; then
-    OUTPUT=$(cat "$SCRIPT_DIR/prompt.md" | amp --dangerously-allow-all 2>&1 | tee /dev/stderr) || true
-  elif [[ "$TOOL" == "claude" ]]; then
-    # Claude Code: use --dangerously-skip-permissions for autonomous operation, --print for output
-    OUTPUT=$(claude --dangerously-skip-permissions --print < "$SCRIPT_DIR/CLAUDE.md" 2>&1 | tee /dev/stderr) || true
+  # Run Codex with the ralph prompt
+  if [[ "$CODEX_DRIVER" == "opencode" ]]; then
+    OPENCODE_MESSAGE=${CODEX_OPENCODE_MESSAGE:-"Follow the instructions in the attached CODEX.md file."}
+    OUTPUT=$(opencode run --model "$CODEX_MODEL" --agent "$CODEX_AGENT" --dir "$SCRIPT_DIR" --file "$SCRIPT_DIR/CODEX.md" -- "$OPENCODE_MESSAGE" 2>&1 | tee /dev/stderr) || true
   else
-    if [[ "$CODEX_DRIVER" == "opencode" ]]; then
-      OPENCODE_MESSAGE=${CODEX_OPENCODE_MESSAGE:-"Follow the instructions in the attached CODEX.md file."}
-      OUTPUT=$(opencode run --model "$CODEX_MODEL" --agent "$CODEX_AGENT" --dir "$SCRIPT_DIR" --file "$SCRIPT_DIR/CODEX.md" -- "$OPENCODE_MESSAGE" 2>&1 | tee /dev/stderr) || true
-    else
-      # Codex: default to `codex exec`, override with CODEX_CMD env var
-      CODEX_CMD=${CODEX_CMD:-"codex exec --dangerously-bypass-approvals-and-sandbox"}
-      OUTPUT=$(cat "$SCRIPT_DIR/CODEX.md" | $CODEX_CMD 2>&1 | tee /dev/stderr) || true
-    fi
+    # Codex: default to `codex exec`, override with CODEX_CMD env var
+    CODEX_CMD=${CODEX_CMD:-"codex exec --dangerously-bypass-approvals-and-sandbox"}
+    OUTPUT=$(cat "$SCRIPT_DIR/CODEX.md" | $CODEX_CMD 2>&1 | tee /dev/stderr) || true
   fi
   
   # Check for completion signal

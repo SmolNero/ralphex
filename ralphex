@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+set -e
+
+resolve_script_dir() {
+  local source="${BASH_SOURCE[0]}"
+  while [ -h "$source" ]; do
+    local dir
+    dir="$(cd -P "$(dirname "$source")" && pwd)"
+    source="$(readlink "$source")"
+    if [[ "$source" != /* ]]; then
+      source="$dir/$source"
+    fi
+  done
+  cd -P "$(dirname "$source")" && pwd
+}
+
+find_ralphex_dir() {
+  if [ -n "${RALPHEX_HOME:-}" ] && [ -x "$RALPHEX_HOME/ralphex" ] && [ -f "$RALPHEX_HOME/ralph.sh" ]; then
+    echo "$RALPHEX_HOME"
+    return 0
+  fi
+
+  local roots=()
+  if [ -n "${RALPHEX_SEARCH_ROOTS:-}" ]; then
+    IFS=':' read -r -a roots <<< "$RALPHEX_SEARCH_ROOTS"
+  else
+    roots=("$HOME" "/Users/Shared")
+  fi
+
+  for root in "${roots[@]}"; do
+    [ -d "$root" ] || continue
+    if command -v mdfind >/dev/null 2>&1; then
+      while IFS= read -r candidate; do
+        local dir
+        dir="$(dirname "$candidate")"
+        if [ -x "$dir/ralphex" ] && [ -f "$dir/ralph.sh" ] && [ -f "$dir/CODEX.md" ]; then
+          echo "$dir"
+          return 0
+        fi
+      done < <(mdfind -onlyin "$root" "kMDItemFSName == 'ralph.sh'" 2>/dev/null)
+    else
+      while IFS= read -r candidate; do
+        local dir
+        dir="$(dirname "$candidate")"
+        if [ -x "$dir/ralphex" ] && [ -f "$dir/ralph.sh" ] && [ -f "$dir/CODEX.md" ]; then
+          echo "$dir"
+          return 0
+        fi
+      done < <(find "$root" -name ralph.sh -type f 2>/dev/null)
+    fi
+  done
+
+  return 1
+}
+
+SCRIPT_DIR="$(resolve_script_dir)"
+if [ ! -f "$SCRIPT_DIR/ralph.sh" ]; then
+  FOUND_DIR="$(find_ralphex_dir)" || true
+  if [ -n "${FOUND_DIR:-}" ]; then
+    SCRIPT_DIR="$FOUND_DIR"
+  else
+    echo "Error: could not locate ralphex."
+    echo "Set RALPHEX_HOME to the ralphex directory or add it to RALPHEX_SEARCH_ROOTS."
+    exit 1
+  fi
+fi
+
+: "${CODEX_DRIVER:=opencode}"
+: "${CODEX_MODEL:=openai/gpt-5.2-codex}"
+
+print_banner() {
+  local greeting="$1"
+  local status="$2"
+
+  echo ""
+  cat <<EOF
+⠀⠀⠀⠀⠀⠀⣀⣤⣶⡶⢛⠟⡿⠻⢻⢿⢶⢦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⣠⡾⡫⢊⠌⡐⢡⠊⢰⠁⡎⠘⡄⢢⠙⡛⡷⢤⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⢪⢋⡞⢠⠃⡜⠀⠎⠀⠉⠀⠃⠀⠃⠀⠃⠙⠘⠊⢻⠦⠀⠀⠀⠀⠀⠀
+⠀⠀⢇⡇⡜⠀⠜⠀⠁⠀⢀⠔⠉⠉⠑⠄⠀⠀⡰⠊⠉⠑⡄⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⡸⠧⠄⠀⠀⠀⠀⠀⠘⡀⠾⠀⠀⣸⠀⠀⢧⠀⠛⠀⠌⡇⠀⠀⠀⠀⠀⠀
+⠀⠘⡇⠀⠀⠀⠀⠀⠀⠀⠀⠙⠒⠒⠚⠁⠈⠉⠲⡍⠒⠈⠀⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠈⠲⣆⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⠉⡹⠤⠶⠁⠀⠀⠀⠈⢦⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠈⣦⡀⠀⠀⠀⠀⠧⣴⠁⠀⠘⠓⢲⣄⣀⣀⣀⡤⠔⠃⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣜⠀⠈⠓⠦⢄⣀⣀⣸⠀⠀⠀⠀⠁⢈⢇⣼⡁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⠒⠛⠲⣄⠀⠀⠀⣠⠏⠀⠉⠲⣤⠀⢸⠋⢻⣤⡛⣄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢡⠀⠀⠀⠀⠉⢲⠾⠁⠀⠀⠀⠀⠈⢳⡾⣤⠟⠁⠹⣿⢆⠀⠀⠀⠀⠀⠀
+⠀⢀⠼⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠃⠀⠀⠀⠀⠀⠈⣧⠀⠀⠀⠀⠀
+⠀⡏⠀⠘⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀
+⢰⣄⠀⠀⠀⠉⠳⠦⣤⣤⡤⠴⠖⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢯⣆⠀⠀⠀
+⢸⣉⠉⠓⠲⢦⣤⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣠⣼⢹⡄⠀⠀
+⠘⡍⠙⠒⠶⢤⣄⣈⣉⡉⠉⠙⠛⠛⠛⠛⠛⠛⢻⠉⠉⠉⢙⣏⣁⣸⠇⡇⠀⠀
+⠀⢣⠀⠀⠀⠀⠀⠀⠉⠉⠉⠙⠛⠛⠛⠛⠛⠛⠛⠒⠒⠒⠋⠉⠀⠸⠚⢇⠀⠀
+⠀⠀⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⢤⣨⠇⠀
+⠀⠀⠀⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⢻⡀⣸⠀⠀⠀
+⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠛⠉⠁⠀⠀⠀
+⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⢠⢄⣀⣤⠤⠴⠒⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠘⡆⠀⠀⠀⠀⠀
+⠀⠀⠀⡎⠀⠀⠀⠀⠀⠀⠀⠀⢷⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀
+⠀⠀⢀⡷⢤⣤⣀⣀⣀⣀⣠⠤⠾⣤⣀⡘⠛⠶⠶⠶⠶⠖⠒⠋⠙⠓⠲⢤⣀⠀
+⠀⠀⠘⠧⣀⡀⠈⠉⠉⠁⠀⠀⠀⠀⠈⠙⠳⣤⣄⣀⣀⣀⠀⠀⠀⠀⠀⢀⣈⡇
+
+
+Ralph says: ${greeting}
+Ralphex Loops: ${status}
+EOF
+  echo ""
+}
+
+case "${1:-}" in
+  off)
+    echo "deactivated by ralphex" > "$SCRIPT_DIR/.ralphex-disabled"
+    print_banner "bi!" "DEACTIVATED 🔴"
+    echo "Ralphex deactivated."
+    exit 0
+    ;;
+  on)
+    rm -f "$SCRIPT_DIR/.ralphex-disabled" "$SCRIPT_DIR/.ralph-disabled"
+    print_banner "hi!" "ACTIVE 🟢"
+    echo "Ralphex activated."
+    exit 0
+    ;;
+  status)
+    if [ -f "$SCRIPT_DIR/.ralphex-disabled" ] || [ -f "$SCRIPT_DIR/.ralph-disabled" ]; then
+      echo "Ralphex status: deactivated"
+    else
+      echo "Ralphex status: active"
+    fi
+    exit 0
+    ;;
+esac
+
+exec "$SCRIPT_DIR/ralph.sh" --tool codex "$@"

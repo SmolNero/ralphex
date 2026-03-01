@@ -2,7 +2,7 @@
 
 ## Overview
 
-Ralph is an autonomous AI agent loop that runs AI coding tools (Amp, Claude Code, or GPT Codex) repeatedly until all PRD items are complete. Each iteration is a fresh instance with clean context.
+Ralph is an autonomous GPT Codex loop for ChatGPT Pro accounts, tuned for budget-friendly iterations. Each iteration is a fresh instance with clean context.
 
 ## Commands
 
@@ -13,21 +13,16 @@ cd flowchart && npm run dev
 # Build the flowchart
 cd flowchart && npm run build
 
-# Run Ralph with Amp (default)
+# Run Ralph (codex only, infinite by default)
 ./ralph.sh [max_iterations]
 
-# Run Ralph with Claude Code
-./ralph.sh --tool claude [max_iterations]
-
-# Run Ralph with GPT Codex (set CODEX_CMD if needed)
-CODEX_CMD="codex" ./ralph.sh --tool codex [max_iterations]
+# Run Ralph with GPT Codex (explicit)
+./ralph.sh --tool codex [max_iterations]
 ```
 
 ## Key Files
 
-- `ralph.sh` - The bash loop that spawns fresh AI instances (supports `--tool amp`, `--tool claude`, or `--tool codex`)
-- `prompt.md` - Instructions given to each AMP instance
-- `CLAUDE.md` - Instructions given to each Claude Code instance
+- `ralph.sh` - The bash loop that spawns GPT Codex instances (codex only)
 - `CODEX.md` - Instructions given to each GPT Codex instance
 - `prd.json.example` - Example PRD format
 - `flowchart/` - Interactive React Flow diagram explaining how Ralph works
@@ -45,7 +40,7 @@ npm run dev
 
 ## Patterns
 
-- Each iteration spawns a fresh AI instance (Amp or Claude Code) with clean context
+- Each iteration spawns a fresh GPT Codex instance with clean context
 - Memory persists via git history, `progress.txt`, and `prd.json`
 - Stories should be small enough to complete in one context window
 - Always update AGENTS.md with discovered patterns for future iterations

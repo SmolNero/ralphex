@@ -1,47 +1,19 @@
 # Ralphex
 
-⠀⠀⠀⠀⠀⠀⣀⣤⣶⡶⢛⠟⡿⠻⢻⢿⢶⢦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢀⣠⡾⡫⢊⠌⡐⢡⠊⢰⠁⡎⠘⡄⢢⠙⡛⡷⢤⡀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⢠⢪⢋⡞⢠⠃⡜⠀⠎⠀⠉⠀⠃⠀⠃⠀⠃⠙⠘⠊⢻⠦⠀⠀⠀⠀⠀⠀
-⠀⠀⢇⡇⡜⠀⠜⠀⠁⠀⢀⠔⠉⠉⠑⠄⠀⠀⡰⠊⠉⠑⡄⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⡸⠧⠄⠀⠀⠀⠀⠀⠘⡀⠾⠀⠀⣸⠀⠀⢧⠀⠛⠀⠌⡇⠀⠀⠀⠀⠀⠀
-⠀⠘⡇⠀⠀⠀⠀⠀⠀⠀⠀⠙⠒⠒⠚⠁⠈⠉⠲⡍⠒⠈⠀⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⠈⠲⣆⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⠉⡹⠤⠶⠁⠀⠀⠀⠈⢦⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠈⣦⡀⠀⠀⠀⠀⠧⣴⠁⠀⠘⠓⢲⣄⣀⣀⣀⡤⠔⠃⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣜⠀⠈⠓⠦⢄⣀⣀⣸⠀⠀⠀⠀⠁⢈⢇⣼⡁⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⢠⠒⠛⠲⣄⠀⠀⠀⣠⠏⠀⠉⠲⣤⠀⢸⠋⢻⣤⡛⣄⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⢡⠀⠀⠀⠀⠉⢲⠾⠁⠀⠀⠀⠀⠈⢳⡾⣤⠟⠁⠹⣿⢆⠀⠀⠀⠀⠀⠀
-⠀⢀⠼⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠃⠀⠀⠀⠀⠀⠈⣧⠀⠀⠀⠀⠀
-⠀⡏⠀⠘⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀
-⢰⣄⠀⠀⠀⠉⠳⠦⣤⣤⡤⠴⠖⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢯⣆⠀⠀⠀
-⢸⣉⠉⠓⠲⢦⣤⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣠⣼⢹⡄⠀⠀
-⠘⡍⠙⠒⠶⢤⣄⣈⣉⡉⠉⠙⠛⠛⠛⠛⠛⠛⢻⠉⠉⠉⢙⣏⣁⣸⠇⡇⠀⠀
-⠀⢣⠀⠀⠀⠀⠀⠀⠉⠉⠉⠙⠛⠛⠛⠛⠛⠛⠛⠒⠒⠒⠋⠉⠀⠸⠚⢇⠀⠀
-⠀⠀⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⢤⣨⠇⠀
-⠀⠀⠀⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⢻⡀⣸⠀⠀⠀
-⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠛⠉⠁⠀⠀⠀
-⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⢠⢄⣀⣤⠤⠴⠒⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠘⡆⠀⠀⠀⠀⠀
-⠀⠀⠀⡎⠀⠀⠀⠀⠀⠀⠀⠀⢷⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀
-⠀⠀⢀⡷⢤⣤⣀⣀⣀⣀⣠⠤⠾⣤⣀⡘⠛⠶⠶⠶⠶⠖⠒⠋⠙⠓⠲⢤⣀⠀
-⠀⠀⠘⠧⣀⡀⠈⠉⠉⠁⠀⠀⠀⠀⠈⠙⠳⣤⣄⣀⣀⣀⠀⠀⠀⠀⠀⢀⣈⡇
-⠀⠀⠀⠀⠀⠉⠛⠲⠤⠤⢤⣤⣄⣀⣀⣀⣀⡸⠇⠀⠀⠀⠉⠉⠉⠉⠉⠉⠁⠀
+![Ralph](ralph.webp)
 
-Ralph is an autonomous AI agent loop that runs AI coding tools ([Amp](https://ampcode.com), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), or GPT Codex) repeatedly until all PRD items are complete. Each iteration is a fresh instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
+Ralphex is an autonomous GPT Codex agent loop for ChatGPT Pro accounts, tuned for budget-friendly iterations. Each iteration is a fresh Codex instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
 Demo heartbeat: see `docs/ralph-demo.txt`.
 
 ## Prerequisites
 
-- One of the following AI coding tools installed and authenticated:
-  - [Amp CLI](https://ampcode.com) (default)
-  - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`)
-  - GPT Codex CLI or wrapper (configure via `CODEX_CMD`)
-    - Install: `npm install -g @openai/codex`
-    - Authenticate (Codex Pro): `codex login`
-    - Authenticate (API key): `printenv OPENAI_API_KEY | codex login --with-api-key`
-    - Auto-login support: if `OPENAI_API_KEY` is set, `ralph.sh` will attempt a login automatically
-    - External auth (e.g., OpenCode): set `CODEX_SKIP_LOGIN_CHECK=1`
-    - OpenCode fallback: set `CODEX_DRIVER=opencode` to use OpenCode OAuth
+- GPT Codex CLI or OpenCode wrapper installed and authenticated
+  - Install Codex: `npm install -g @openai/codex`
+  - Authenticate (Codex Pro): `codex login`
+  - Authenticate (API key): `printenv OPENAI_API_KEY | codex login --with-api-key`
+  - Auto-login support: if `OPENAI_API_KEY` is set, `ralph.sh` will attempt a login automatically
+  - External auth (OpenCode): set `CODEX_SKIP_LOGIN_CHECK=1`
+  - OpenCode driver: set `CODEX_DRIVER=opencode` to use OpenCode OAuth
 - `jq` installed (`brew install jq` on macOS)
 - A git repository for your project
 
@@ -55,140 +27,113 @@ Copy the ralph files into your project:
 # From your project root
 mkdir -p scripts/ralph
 cp /path/to/ralph/ralph.sh scripts/ralph/
+cp /path/to/ralph/ralphex scripts/ralph/
+cp /path/to/ralph/raphex scripts/ralph/
 
-# Copy the prompt template for your AI tool of choice:
-cp /path/to/ralph/prompt.md scripts/ralph/prompt.md    # For Amp
-# OR
-cp /path/to/ralph/CLAUDE.md scripts/ralph/CLAUDE.md    # For Claude Code
-# OR
-cp /path/to/ralph/CODEX.md scripts/ralph/CODEX.md      # For GPT Codex
+# Copy the prompt template for Codex:
+cp /path/to/ralph/CODEX.md scripts/ralph/CODEX.md
 
-chmod +x scripts/ralph/ralph.sh
+chmod +x scripts/ralph/ralph.sh scripts/ralph/ralphex scripts/ralph/raphex
 ```
 
-### Option 2: Install skills globally (Amp)
+## Quick Start: ChatGPT Pro + OpenCode
 
-Copy the skills to your Amp or Claude config for use across all projects:
-
-For AMP
-```bash
-cp -r skills/prd ~/.config/amp/skills/
-cp -r skills/ralph ~/.config/amp/skills/
-```
-
-For Claude Code (manual)
-```bash
-cp -r skills/prd ~/.claude/skills/
-cp -r skills/ralph ~/.claude/skills/
-```
-
-### Option 3: Use as Claude Code Marketplace
-
-Add the Ralph marketplace to Claude Code:
-
-```bash
-/plugin marketplace add snarktank/ralph
-```
-
-Then install the skills:
-
-```bash
-/plugin install ralph-skills@ralph-marketplace
-```
-
-Available skills after installation:
-- `/prd` - Generate Product Requirements Documents
-- `/ralph` - Convert PRDs to prd.json format
-
-Skills are automatically invoked when you ask Claude to:
-- "create a prd", "write prd for", "plan this feature"
-- "convert this prd", "turn into ralph format", "create prd.json"
-
-### Configure Amp auto-handoff (recommended)
-
-Add to `~/.config/amp/settings.json`:
-
-```json
-{
-  "amp.experimental.autoHandoff": { "context": 90 }
-}
-```
-
-This enables automatic handoff when context fills up, allowing Ralph to handle large stories that exceed a single context window.
-
-## Quick Start: GPT Codex + OpenCode (Smol Budget Edition)
-
-If you are building on a tight budget, this is the fastest path with minimal setup. OpenCode handles OAuth so you do not need API keys.
+If you are building on a tight budget with ChatGPT Pro, this is the fastest path with minimal setup. OpenCode handles OAuth so you do not need API keys.
 
 1. Copy these files into your project root:
    - `ralph.sh`
-   - `ralphcodex`
+   - `ralphex`
+   - `raphex`
    - `CODEX.md`
 2. Make the wrapper executable:
-   - `chmod +x ralphcodex`
+   - `chmod +x ralphex raphex`
 3. Log in once with OpenCode:
    - `opencode auth login`
 4. Add a `prd.json` to your project root.
 5. Run:
-   - `./ralphcodex`
+   - `./ralphex`
+   - or `./raphex`
 
-Ralph will print the ASCII banner, then run until all stories pass.
+Ralphex will print the ASCII banner, then run until all stories pass.
 
 ## What We Built (Walkthrough)
 
 - **Codex loop with OpenCode fallback**: `ralph.sh` uses the Codex CLI when logged in, and falls back to OpenCode OAuth when not.
-- **One-command runner**: `./ralphcodex` defaults to `CODEX_DRIVER=opencode` and `CODEX_MODEL=openai/gpt-5.2-codex`.
-- **Active/Deactivated banner**: Ralph prints a big ASCII banner with `ACTIVE 🟢` or `DEACTIVATED 🔴`.
-- **Deactivation switch**: `./ralphcodex off` creates `.ralph-disabled`; `./ralphcodex on` removes it; `./ralphcodex status` reports state.
+- **One-command runner**: `./ralphex` defaults to `CODEX_DRIVER=opencode` and `CODEX_MODEL=openai/gpt-5.2-codex`.
+- **Active/Deactivated banner**: Ralphex prints a big ASCII banner with `ACTIVE 🟢` or `DEACTIVATED 🔴`.
+- **Deactivation switch**: `./ralphex off` or `./raphex off` creates `.ralphex-disabled`; `./ralphex on` or `./raphex on` removes it; `./ralphex status` reports state.
 - **Clean exit when done**: if no stories remain, Codex emits `<promise>COMPLETE</promise>` and the loop stops.
+
+## Run From Anywhere
+
+If `ralphex` is on your PATH, you can run it from any directory. It will locate the Ralphex project folder and execute from there.
+
+Add `ralphex` to your PATH (one-time setup):
+```bash
+# Add the ralphex directory to PATH
+export PATH="/path/to/ralphex:$PATH"
+
+# Or symlink the binary into /usr/local/bin
+ln -s /path/to/ralphex/ralphex /usr/local/bin/ralphex
+```
+
+Recommended (fast, explicit):
+```bash
+export RALPHEX_HOME="/path/to/ralphex"
+ralphex
+```
+
+Optional (search-based):
+```bash
+export RALPHEX_SEARCH_ROOTS="$HOME:/Users/Shared"
+ralphex
+```
+
+When found, you can still run `ralphex on`, `ralphex off`, or `ralphex status` from anywhere.
 
 ## Workflow
 
 ### 1. Create a PRD
 
-Use the PRD skill to generate a detailed requirements document:
+Create `prd.json` with user stories for the loop. Use `prd.json.example` as a template if you want a starting point.
 
-```
-Load the prd skill and create a PRD for [your feature description]
-```
-
-Answer the clarifying questions. The skill saves output to `tasks/prd-[feature-name].md`.
-
-### 2. Convert PRD to Ralph format
-
-Use the Ralph skill to convert the markdown PRD to JSON:
-
-```
-Load the ralph skill and convert tasks/prd-[feature-name].md to prd.json
-```
-
-This creates `prd.json` with user stories structured for autonomous execution.
-
-### 3. Run Ralph
+### 2. Run Ralph
 
 ```bash
 # One-command Codex loop (OpenCode OAuth by default)
+./ralphex [max_iterations]
+
+# Short alias (typo-friendly)
+./raphex [max_iterations]
+
+# If you installed into scripts/ralph
+./scripts/ralph/ralphex [max_iterations]
+./scripts/ralph/raphex [max_iterations]
+
+# Legacy alias (still works)
 ./ralphcodex [max_iterations]
 
-# Toggle Ralph on/off
-./ralphcodex off
-./ralphcodex on
-./ralphcodex status
+# Toggle Ralphex on/off
+./ralphex off
+./ralphex on
+./ralphex status
 
-# Using Amp (default)
-./scripts/ralph/ralph.sh [max_iterations]
+# Alias works too
+./raphex off
+./raphex on
+./raphex status
 
-# Using Claude Code
-./scripts/ralph/ralph.sh --tool claude [max_iterations]
-
-# Using GPT Codex (set CODEX_CMD if needed)
+# Run with Codex directly (set CODEX_CMD if needed)
 CODEX_CMD="codex" ./scripts/ralph/ralph.sh --tool codex [max_iterations]
+
+# Cap the loop (optional)
+./ralph.sh 25
 
 # Bootstrap from example PRD (for demos only):
 PRD_BOOTSTRAP=1 ./scripts/ralph/ralph.sh [max_iterations]
 ```
 
-Default is 10 iterations. Use `--tool amp`, `--tool claude`, or `--tool codex` to select your AI coding tool.
+Default is infinite iterations. Pass a number to cap the loop (for example, `./ralph.sh 10`). The loop always runs in Codex mode.
 
 For Codex, set `CODEX_CMD` to the command that accepts prompt text on stdin, for example:
 
@@ -202,7 +147,7 @@ CODEX_SKIP_LOGIN_CHECK=1 ./scripts/ralph/ralph.sh --tool codex
 CODEX_DRIVER=opencode CODEX_MODEL="openai/gpt-5.2-codex" ./scripts/ralph/ralph.sh --tool codex
 ```
 
-Ralph will:
+Ralphex will:
 1. Create a feature branch (from PRD `branchName`)
 2. Pick the highest priority story where `passes: false`
 3. Implement that single story
@@ -214,19 +159,19 @@ Ralph will:
 
 If `prd.json` is missing, `ralph.sh` will exit with instructions. To auto-copy the example, set `PRD_BOOTSTRAP=1`.
 
-## Deactivate Ralph
+## Deactivate Ralphex
 
-To pause the loop (useful if you want GPT Codex to stop running Ralph):
+To pause the loop (useful if you want GPT Codex to stop running Ralphex):
 
 ```bash
 # Create a flag file to deactivate
-touch .ralph-disabled
+touch .ralphex-disabled
 
 # Or set an env var for a single run
 RALPH_DISABLED=1 ./ralph.sh
 ```
 
-When deactivated, Ralph prints a banner and exits. To override:
+When deactivated, Ralphex prints a banner and exits. To override:
 
 ```bash
 RALPH_FORCE=1 ./ralph.sh
@@ -236,16 +181,13 @@ RALPH_FORCE=1 ./ralph.sh
 
 | File | Purpose |
 |------|---------|
-| `ralph.sh` | The bash loop that spawns fresh AI instances (supports `--tool amp`, `--tool claude`, or `--tool codex`) |
-| `prompt.md` | Prompt template for Amp |
-| `CLAUDE.md` | Prompt template for Claude Code |
+| `ralph.sh` | The bash loop that spawns GPT Codex instances (codex only) |
+| `ralphex` | One-command wrapper for Codex/OpenCode |
+| `raphex` | Alias for `ralphex` |
 | `CODEX.md` | Prompt template for GPT Codex |
 | `prd.json` | User stories with `passes` status (the task list) |
 | `prd.json.example` | Example PRD format for reference |
 | `progress.txt` | Append-only learnings for future iterations |
-| `skills/prd/` | Skill for generating PRDs (works with Amp and Claude Code) |
-| `skills/ralph/` | Skill for converting PRDs to JSON (works with Amp and Claude Code) |
-| `.claude-plugin/` | Plugin manifest for Claude Code marketplace discovery |
 | `flowchart/` | Interactive visualization of how Ralph works |
 
 ## Flowchart
@@ -266,7 +208,7 @@ npm run dev
 
 ### Each Iteration = Fresh Context
 
-Each iteration spawns a **new AI instance** (Amp or Claude Code) with clean context. The only memory between iterations is:
+Each iteration spawns a **new GPT Codex instance** with clean context. The only memory between iterations is:
 - Git history (commits from previous iterations)
 - `progress.txt` (learnings and context)
 - `prd.json` (which stories are done)
@@ -288,7 +230,7 @@ Too big (split these):
 
 ### AGENTS.md Updates Are Critical
 
-After each iteration, Ralph updates the relevant `AGENTS.md` files with learnings. This is key because AI coding tools automatically read these files, so future iterations (and future human developers) benefit from discovered patterns, gotchas, and conventions.
+After each iteration, Ralphex updates the relevant `AGENTS.md` files with learnings. This is key because AI coding tools automatically read these files, so future iterations (and future human developers) benefit from discovered patterns, gotchas, and conventions.
 
 Examples of what to add to AGENTS.md:
 - Patterns discovered ("this codebase uses X for Y")
@@ -297,18 +239,18 @@ Examples of what to add to AGENTS.md:
 
 ### Feedback Loops
 
-Ralph only works if there are feedback loops:
+Ralphex only works if there are feedback loops:
 - Typecheck catches type errors
 - Tests verify behavior
 - CI must stay green (broken code compounds across iterations)
 
 ### Browser Verification for UI Stories
 
-Frontend stories must include "Verify in browser using dev-browser skill" in acceptance criteria. Ralph will use the dev-browser skill to navigate to the page, interact with the UI, and confirm changes work.
+Frontend stories must include "Verify in browser using dev-browser skill" in acceptance criteria. Ralphex will use the dev-browser skill to navigate to the page, interact with the UI, and confirm changes work.
 
 ### Stop Condition
 
-When all stories have `passes: true`, Ralph outputs `<promise>COMPLETE</promise>` and the loop exits.
+When all stories have `passes: true`, Ralphex outputs `<promise>COMPLETE</promise>` and the loop exits.
 
 ## Debugging
 
@@ -327,17 +269,15 @@ git log --oneline -10
 
 ## Customizing the Prompt
 
-After copying `prompt.md` (for Amp) or `CLAUDE.md` (for Claude Code) to your project, customize it for your project:
+After copying `CODEX.md` to your project, customize it for your project:
 - Add project-specific quality check commands
 - Include codebase conventions
 - Add common gotchas for your stack
 
 ## Archiving
 
-Ralph automatically archives previous runs when you start a new feature (different `branchName`). Archives are saved to `archive/YYYY-MM-DD-feature-name/`.
+Ralphex automatically archives previous runs when you start a new feature (different `branchName`). Archives are saved to `archive/YYYY-MM-DD-feature-name/`.
 
 ## References
 
 - [Geoffrey Huntley's Ralph article](https://ghuntley.com/ralph/)
-- [Amp documentation](https://ampcode.com/manual)
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)

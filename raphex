@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+set -e
+
+resolve_script_dir() {
+  local source="${BASH_SOURCE[0]}"
+  while [ -h "$source" ]; do
+    local dir
+    dir="$(cd -P "$(dirname "$source")" && pwd)"
+    source="$(readlink "$source")"
+    if [[ "$source" != /* ]]; then
+      source="$dir/$source"
+    fi
+  done
+  cd -P "$(dirname "$source")" && pwd
+}
+
+find_ralphex_dir() {
+  if [ -n "${RALPHEX_HOME:-}" ] && [ -x "$RALPHEX_HOME/ralphex" ] && [ -f "$RALPHEX_HOME/ralph.sh" ]; then
+    echo "$RALPHEX_HOME"
+    return 0
+  fi
+
+  local roots=()
+  if [ -n "${RALPHEX_SEARCH_ROOTS:-}" ]; then
+    IFS=':' read -r -a roots <<< "$RALPHEX_SEARCH_ROOTS"
+  else
+    roots=("$HOME" "/Users/Shared")
+  fi
+
+  for root in "${roots[@]}"; do
+    [ -d "$root" ] || continue
+    if command -v mdfind >/dev/null 2>&1; then
+      while IFS= read -r candidate; do
+        local dir
+        dir="$(dirname "$candidate")"
+        if [ -x "$dir/ralphex" ] && [ -f "$dir/ralph.sh" ] && [ -f "$dir/CODEX.md" ]; then
+          echo "$dir"
+          return 0
+        fi
+      done < <(mdfind -onlyin "$root" "kMDItemFSName == 'ralph.sh'" 2>/dev/null)
+    else
+      while IFS= read -r candidate; do
+        local dir
+        dir="$(dirname "$candidate")"
+        if [ -x "$dir/ralphex" ] && [ -f "$dir/ralph.sh" ] && [ -f "$dir/CODEX.md" ]; then
+          echo "$dir"
+          return 0
+        fi
+      done < <(find "$root" -name ralph.sh -type f 2>/dev/null)
+    fi
+  done
+
+  return 1
+}
+
+SCRIPT_DIR="$(resolve_script_dir)"
+
+if [ -x "$SCRIPT_DIR/ralphex" ] && [ -f "$SCRIPT_DIR/ralph.sh" ]; then
+  exec "$SCRIPT_DIR/ralphex" "$@"
+fi
+
+FOUND_DIR="$(find_ralphex_dir)" || true
+if [ -n "${FOUND_DIR:-}" ]; then
+  exec "$FOUND_DIR/ralphex" "$@"
+fi
+
+echo "Error: could not locate ralphex."
+echo "Set RALPHEX_HOME to the ralphex directory or add it to RALPHEX_SEARCH_ROOTS."
+exit 1
