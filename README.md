@@ -27,6 +27,7 @@ If this saves you money, consider starring the repo.
 - Safe on/off switch: `ralphex on`, `ralphex off`, `ralphex status`
 - Clean stop when `prd.json` has no remaining `passes: false` stories (checked via `jq`)
 - Runs without approval prompts (full trust loop)
+- Mandatory backpressure check at startup (blocks when no quality checks are detected)
 
 ## Prerequisites
 
@@ -185,12 +186,26 @@ Examples of what to add to AGENTS.md:
 - Gotchas ("do not forget to update Z when changing W")
 - Useful context ("the settings panel is in component X")
 
+### Self-Improvement (CODEX.md)
+
+When the agent learns a reusable process improvement, it should update `CODEX.md` with a concise, durable instruction.
+
 ### Feedback Loops
 
 Ralphex only works if there are feedback loops:
 - Typecheck catches type errors
 - Tests verify behavior
 - CI must stay green (broken code compounds across iterations)
+- If no real checks are configured, the loop should block and warn loudly instead of silently passing
+- On startup, `scripts/check-backpressure.sh` enforces this in the project working directory and exits early if checks are missing
+
+### No Placeholder Implementations
+
+Avoid stubs, TODOs, or placeholder logic. If a story cannot be fully implemented, it should be treated as blocked rather than "done."
+
+### Context Discipline
+
+Use subagents for file search or summarization and keep the primary context lean. Large investigations should not bloat the main loop.
 
 ### Browser Verification for UI Stories
 
@@ -257,6 +272,10 @@ When found, you can still run `ralphex on`, `ralphex off`, or `ralphex status` f
 
 - [Geoffrey Huntley's Ralph article](https://ghuntley.com/ralph/)
 - Smol Nero product: https://github.com/SmolNero
+
+## Planning Mode (Future)
+
+For larger projects, a `./ralphex plan` mode can generate or update `prd.json` without executing it, keeping planning and building separate.
 
 ## License
 

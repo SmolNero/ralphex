@@ -49,43 +49,53 @@
             <div class="node-sub">Start the Codex loop</div>
           </div>
 
-          <div class="node loop" id="step-4" data-step="4" style="--x: 640; --y: 220">
+          <div class="node decision" id="step-4" data-step="4" style="--x: 640; --y: 140">
+            <div class="node-title">Quality checks exist?</div>
+            <div class="node-sub">Backpressure gate</div>
+          </div>
+          <div class="node loop" id="step-5" data-step="5" style="--x: 640; --y: 220">
             <div class="node-title">Codex picks a story</div>
             <div class="node-sub">Finds next passes: false</div>
           </div>
-          <div class="node loop" id="step-5" data-step="5" style="--x: 360; --y: 220">
+          <div class="node loop" id="step-6" data-step="6" style="--x: 360; --y: 220">
             <div class="node-title">Implements change</div>
             <div class="node-sub">Writes code</div>
           </div>
-          <div class="node loop" id="step-6" data-step="6" style="--x: 80; --y: 220">
+          <div class="node loop" id="step-7" data-step="7" style="--x: 80; --y: 220">
             <div class="node-title">Runs checks</div>
             <div class="node-sub">Typecheck, tests</div>
           </div>
-          <div class="node loop" id="step-7" data-step="7" style="--x: 80; --y: 380">
+          <div class="node loop" id="step-8" data-step="8" style="--x: 80; --y: 380">
             <div class="node-title">Commits changes</div>
             <div class="node-sub">If checks pass</div>
           </div>
-          <div class="node loop" id="step-8" data-step="8" style="--x: 360; --y: 380">
+          <div class="node loop" id="step-9" data-step="9" style="--x: 360; --y: 380">
             <div class="node-title">Updates state</div>
             <div class="node-sub">prd.json + progress.txt</div>
           </div>
-          <div class="node decision" id="step-9" data-step="9" style="--x: 640; --y: 380">
+          <div class="node decision" id="step-10" data-step="10" style="--x: 640; --y: 380">
             <div class="node-title">More stories?</div>
             <div class="node-sub">Loop or finish</div>
           </div>
-          <div class="node done" id="step-10" data-step="10" style="--x: 640; --y: 540">
+          <div class="node done" id="step-11" data-step="11" style="--x: 640; --y: 540">
             <div class="node-title">Done</div>
             <div class="node-sub">All stories complete</div>
           </div>
+          <div class="node halted" id="step-12" data-step="12" style="--x: 360; --y: 540">
+            <div class="node-title">Halted</div>
+            <div class="node-sub">Missing checks</div>
+          </div>
 
-          <div class="edge-label" id="label-yes" data-edge="e9-4">Yes</div>
-          <div class="edge-label" id="label-no" data-edge="e9-10">No</div>
+          <div class="edge-label" id="label-yes-quality" data-edge="e4-5">Yes</div>
+          <div class="edge-label" id="label-no-quality" data-edge="e4-12">No</div>
+          <div class="edge-label" id="label-yes" data-edge="e10-5">Yes</div>
+          <div class="edge-label" id="label-no" data-edge="e10-11">No</div>
         </div>
       </section>
 
       <footer class="controls">
         <button id="prev" type="button">Previous</button>
-        <div class="step">Step <span id="step-count">1</span> of 10</div>
+        <div class="step">Step <span id="step-count">1</span> of <span id="step-total">12</span></div>
         <button id="next" type="button">Next</button>
         <button id="reset" type="button" class="ghost">Reset</button>
       </footer>

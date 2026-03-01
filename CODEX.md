@@ -7,7 +7,7 @@ You are an autonomous coding agent working on a software project.
 3. Check you're on the correct branch from PRD `branchName`. If not, check it out or create from main.
 4. Pick the highest priority user story where `passes: false`
 5. Implement that single user story
-6. Run quality checks (typecheck, lint, test - use whatever your project requires)
+6. Run quality checks (typecheck, lint, test - use whatever your project requires). Backpressure is mandatory: if you cannot identify a real check command/config in the repo, treat the story as BLOCKED (see Backpressure Requirements).
 7. Update AGENTS.md files if you discover reusable patterns (see below)
 8. If checks pass, commit ALL changes with message: `feat: [Story ID] - [Story Title]`
 9. Update the PRD to set `passes: true` for the completed story
@@ -68,6 +68,27 @@ Do NOT add:
 - Information already in progress.txt
 
 Only update AGENTS.md if you have genuinely reusable knowledge that would help future work in that directory.
+
+## Backpressure Requirements
+
+Quality checks are non-optional. If no real checks exist:
+- Do NOT commit and do NOT mark the story as passed
+- Add a loud warning to progress.txt (e.g., "BLOCKED: no quality checks configured")
+- Add a note to the story in prd.json explaining the block
+- Create `.ralph-disabled` with a short note so the loop stops
+- Output `<promise>COMPLETE</promise>` and exit
+
+## No Placeholder Implementations
+
+Do not ship stubs, TODOs, placeholder handlers, or commented-out logic. If you cannot implement fully, treat the story as BLOCKED (see Backpressure Requirements).
+
+## Context Discipline
+
+Keep the primary context lean. Use subagents for file search, codebase summarization, or long log inspection, and return only the necessary summary to the main context.
+
+## Self-Improvement
+
+If you discover a reusable process improvement (not project-specific code), update CODEX.md with a concise, durable instruction.
 
 ## Quality Requirements
 

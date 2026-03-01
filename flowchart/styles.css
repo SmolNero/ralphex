@@ -12,6 +12,8 @@
   --decision-border: #d49c26;
   --done: #e7f8ed;
   --done-border: #2f8f57;
+  --halted: #ffe3e3;
+  --halted-border: #c94a4a;
   --accent: #1e64ff;
 }
 
@@ -147,6 +149,11 @@ body {
 .node.done {
   background: var(--done);
   border-color: var(--done-border);
+}
+
+.node.halted {
+  background: var(--halted);
+  border-color: var(--halted-border);
 }
 
 .edge-label {

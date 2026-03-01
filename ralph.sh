@@ -158,6 +158,15 @@ fi
 
 print_banner "hi!" "ACTIVE 🟢"
 
+BACKPRESSURE_SCRIPT="$SCRIPT_DIR/scripts/check-backpressure.sh"
+if [ -f "$BACKPRESSURE_SCRIPT" ]; then
+  if ! RALPH_PROJECT_ROOT="$PWD" bash "$BACKPRESSURE_SCRIPT"; then
+    echo ""
+    echo "Ralph halted: missing quality checks."
+    exit 1
+  fi
+fi
+
 # Codex preflight checks
 if [[ "$TOOL" == "codex" ]]; then
   if [[ "$CODEX_DRIVER" == "opencode" ]]; then

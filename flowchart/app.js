@@ -2,6 +2,7 @@ const nodes = Array.from(document.querySelectorAll('.node'));
 const chart = document.getElementById('chart');
 const svg = document.getElementById('lines');
 const stepCount = document.getElementById('step-count');
+const stepTotal = document.getElementById('step-total');
 const nextButton = document.getElementById('next');
 const prevButton = document.getElementById('prev');
 const resetButton = document.getElementById('reset');
@@ -10,22 +11,30 @@ const edges = [
   { id: 'e1-2', from: 'step-1', to: 'step-2', fromAnchor: 'right', toAnchor: 'left' },
   { id: 'e2-3', from: 'step-2', to: 'step-3', fromAnchor: 'right', toAnchor: 'left' },
   { id: 'e3-4', from: 'step-3', to: 'step-4', fromAnchor: 'bottom', toAnchor: 'top' },
-  { id: 'e4-5', from: 'step-4', to: 'step-5', fromAnchor: 'left', toAnchor: 'right' },
+  { id: 'e4-5', from: 'step-4', to: 'step-5', fromAnchor: 'bottom', toAnchor: 'top' },
+  { id: 'e4-12', from: 'step-4', to: 'step-12', fromAnchor: 'left', toAnchor: 'top' },
   { id: 'e5-6', from: 'step-5', to: 'step-6', fromAnchor: 'left', toAnchor: 'right' },
-  { id: 'e6-7', from: 'step-6', to: 'step-7', fromAnchor: 'bottom', toAnchor: 'top' },
-  { id: 'e7-8', from: 'step-7', to: 'step-8', fromAnchor: 'right', toAnchor: 'left' },
+  { id: 'e6-7', from: 'step-6', to: 'step-7', fromAnchor: 'left', toAnchor: 'right' },
+  { id: 'e7-8', from: 'step-7', to: 'step-8', fromAnchor: 'bottom', toAnchor: 'top' },
   { id: 'e8-9', from: 'step-8', to: 'step-9', fromAnchor: 'right', toAnchor: 'left' },
-  { id: 'e9-4', from: 'step-9', to: 'step-4', fromAnchor: 'top', toAnchor: 'bottom' },
-  { id: 'e9-10', from: 'step-9', to: 'step-10', fromAnchor: 'bottom', toAnchor: 'top' },
+  { id: 'e9-10', from: 'step-9', to: 'step-10', fromAnchor: 'right', toAnchor: 'left' },
+  { id: 'e10-5', from: 'step-10', to: 'step-5', fromAnchor: 'top', toAnchor: 'bottom' },
+  { id: 'e10-11', from: 'step-10', to: 'step-11', fromAnchor: 'bottom', toAnchor: 'top' },
 ];
 
 const labels = [
-  { id: 'label-yes', edge: 'e9-4', offsetX: -18, offsetY: -20 },
-  { id: 'label-no', edge: 'e9-10', offsetX: 18, offsetY: 10 },
+  { id: 'label-yes-quality', edge: 'e4-5', offsetX: 16, offsetY: -18 },
+  { id: 'label-no-quality', edge: 'e4-12', offsetX: -26, offsetY: 12 },
+  { id: 'label-yes', edge: 'e10-5', offsetX: -18, offsetY: -20 },
+  { id: 'label-no', edge: 'e10-11', offsetX: 18, offsetY: 10 },
 ];
 
 const edgeElements = new Map();
 let currentStep = 1;
+const totalSteps = nodes.reduce(
+  (maxStep, node) => Math.max(maxStep, Number(node.dataset.step || 0)),
+  0,
+);
 
 function getStepIndex(nodeId) {
   const el = document.getElementById(nodeId);
@@ -132,17 +141,21 @@ function updateVisibility() {
 
   stepCount.textContent = `${currentStep}`;
   prevButton.disabled = currentStep <= 1;
-  nextButton.disabled = currentStep >= 10;
+  nextButton.disabled = currentStep >= totalSteps;
 }
 
 function setStep(step) {
-  currentStep = Math.min(Math.max(step, 1), 10);
+  currentStep = Math.min(Math.max(step, 1), totalSteps);
   updateVisibility();
 }
 
 ensureEdges();
 layoutEdges();
 updateVisibility();
+
+if (stepTotal) {
+  stepTotal.textContent = `${totalSteps}`;
+}
 
 nextButton.addEventListener('click', () => setStep(currentStep + 1));
 prevButton.addEventListener('click', () => setStep(currentStep - 1));
