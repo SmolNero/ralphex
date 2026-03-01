@@ -1,5 +1,9 @@
 # Ralphex
 
+<p align="center">
+  <img src="assets/ralphex_ascii.png" alt="ralphex_repo_logo" width="770" style="max-width: 100%; height: auto;" />
+</p>
+
 Ralphex is an autonomous GPT Codex agent loop for ChatGPT Pro accounts, tuned for budget-friendly iterations. Each iteration is a fresh Codex instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
 
 ## Start Here
