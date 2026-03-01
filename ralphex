@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Smol Nero product: https://github.com/SmolNero
 set -e
 
 resolve_script_dir() {

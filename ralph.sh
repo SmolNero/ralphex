@@ -1,5 +1,6 @@
 #!/bin/bash
 # Ralph Wiggum - Long-running AI agent loop
+# Smol Nero product: https://github.com/SmolNero
 # Usage: ./ralph.sh [--tool codex] [max_iterations]
 
 set -e
