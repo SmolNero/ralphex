@@ -67,8 +67,8 @@ body {
 
 .chart {
   position: relative;
-  width: 980px;
-  height: 760px;
+  width: 1000px;
+  height: 820px;
   margin: 0 auto;
   background:
     radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.35)),
@@ -218,8 +218,8 @@ button.ghost {
 
 @media (max-width: 900px) {
   .chart {
-    width: 920px;
-    height: 760px;
+    width: 960px;
+    height: 820px;
   }
 
   .controls {

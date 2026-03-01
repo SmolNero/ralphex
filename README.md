@@ -61,6 +61,7 @@ Ralphex will print the ASCII banner, then run until all stories pass.
 - **Active/Deactivated banner**: Ralphex prints a big ASCII banner with `ACTIVE 🟢` or `DEACTIVATED 🔴`.
 - **Deactivation switch**: `./ralphex off` or `./raphex off` creates `.ralphex-disabled`; `./ralphex on` or `./raphex on` removes it; `./ralphex status` reports state.
 - **Clean exit when done**: if no stories remain, Codex emits `<promise>COMPLETE</promise>` and the loop stops.
+- **No approval prompts**: Codex runs with approval bypass enabled; the loop proceeds without asking for permissions.
 
 ## Run From Anywhere
 
@@ -132,6 +133,8 @@ PRD_BOOTSTRAP=1 ./scripts/ralph/ralph.sh [max_iterations]
 ```
 
 Default is infinite iterations. Pass a number to cap the loop (for example, `./ralph.sh 10`). The loop always runs in Codex mode.
+
+Ralphex assumes full trust: it runs with approval bypass enabled and does not ask for permission prompts. The Codex command is hard-locked to prevent overrides. Use `ralphex off` (or `.ralphex-disabled`) as the emergency stop.
 
 For Codex, set `CODEX_CMD` to the command that accepts prompt text on stdin, for example:
 

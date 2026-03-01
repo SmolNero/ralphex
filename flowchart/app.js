@@ -54,10 +54,8 @@ function anchorPoint(element, anchor) {
 }
 
 function createEdgePath(start, end) {
-  const bend = Math.min(80, Math.abs(end.x - start.x) * 0.5 + 20);
-  const control1 = { x: start.x + bend * 0.5, y: start.y };
-  const control2 = { x: end.x - bend * 0.5, y: end.y };
-  return `M ${start.x} ${start.y} C ${control1.x} ${control1.y} ${control2.x} ${control2.y} ${end.x} ${end.y}`;
+  const midX = (start.x + end.x) / 2;
+  return `M ${start.x} ${start.y} L ${midX} ${start.y} L ${midX} ${end.y} L ${end.x} ${end.y}`;
 }
 
 function ensureEdges() {

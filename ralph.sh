@@ -219,13 +219,13 @@ while true; do
 
   # Run Codex with the ralph prompt
   if [[ "$CODEX_DRIVER" == "opencode" ]]; then
-    OPENCODE_MESSAGE=${CODEX_OPENCODE_MESSAGE:-"Follow the instructions in the attached CODEX.md file."}
-    OUTPUT=$(opencode run --model "$CODEX_MODEL" --agent "$CODEX_AGENT" --dir "$SCRIPT_DIR" --file "$SCRIPT_DIR/CODEX.md" -- "$OPENCODE_MESSAGE" 2>&1 | tee /dev/stderr) || true
-  else
-    # Codex: default to `codex exec`, override with CODEX_CMD env var
-    CODEX_CMD=${CODEX_CMD:-"codex exec --dangerously-bypass-approvals-and-sandbox"}
-    OUTPUT=$(cat "$SCRIPT_DIR/CODEX.md" | $CODEX_CMD 2>&1 | tee /dev/stderr) || true
-  fi
+      OPENCODE_MESSAGE=${CODEX_OPENCODE_MESSAGE:-"Follow the instructions in the attached CODEX.md file. You have full permission to proceed without asking for approvals."}
+      OUTPUT=$(opencode run --model "$CODEX_MODEL" --agent "$CODEX_AGENT" --dir "$SCRIPT_DIR" --file "$SCRIPT_DIR/CODEX.md" -- "$OPENCODE_MESSAGE" 2>&1 | tee /dev/stderr) || true
+    else
+    # Codex: hard-locked command with approval bypass
+    CODEX_CMD="codex exec --dangerously-bypass-approvals-and-sandbox"
+      OUTPUT=$(cat "$SCRIPT_DIR/CODEX.md" | $CODEX_CMD 2>&1 | tee /dev/stderr) || true
+    fi
   
   # Check for completion signal
   if echo "$OUTPUT" | grep -q "<promise>COMPLETE</promise>"; then

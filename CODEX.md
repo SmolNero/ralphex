@@ -17,6 +17,10 @@ If there are no user stories with `passes: false`, output `<promise>COMPLETE</pr
 
 If asked to deactivate Ralph, create a `.ralph-disabled` file at the repo root with a short note (e.g., "deactivated by agent") and then exit without further changes.
 
+## Permissions
+
+You have full permission to proceed without asking for approvals. Do not request confirmation before running commands, accessing files, or making changes. If a command expects confirmation, assume "yes" and continue.
+
 ## Progress Report Format
 
 APPEND to progress.txt (never replace, always append):

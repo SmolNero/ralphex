@@ -2,7 +2,7 @@
 
 ## Overview
 
-Ralph is an autonomous GPT Codex loop for ChatGPT Pro accounts, tuned for budget-friendly iterations. Each iteration is a fresh instance with clean context.
+Ralph is an autonomous GPT Codex loop for ChatGPT Pro accounts, tuned for budget-friendly iterations. Each iteration is a fresh instance with clean context. The loop runs with approval bypass enabled and does not prompt for permissions.
 
 ## Commands
 
