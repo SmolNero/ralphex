@@ -256,3 +256,7 @@ When found, you can still run `ralphex on`, `ralphex off`, or `ralphex status` f
 ## References
 
 - [Geoffrey Huntley's Ralph article](https://ghuntley.com/ralph/)
+
+## License
+
+MIT. Smol Nero product: https://github.com/SmolNero
