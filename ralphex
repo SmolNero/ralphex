@@ -130,4 +130,5 @@ case "${1:-}" in
     ;;
 esac
 
+export RALPHEX_ENTRYPOINT="ralphex"
 exec "$SCRIPT_DIR/ralph.sh" --tool codex "$@"

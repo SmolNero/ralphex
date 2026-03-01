@@ -141,6 +141,10 @@ if [ "${RALPH_FORCE:-}" != "1" ]; then
   fi
 fi
 
+if [ -z "${RALPHEX_ENTRYPOINT:-}" ]; then
+  echo "Note: ralph.sh is an advanced entrypoint. Use ./ralphex instead."
+fi
+
 print_banner "hi!" "ACTIVE 🟢"
 
 # Codex preflight checks

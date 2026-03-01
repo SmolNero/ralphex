@@ -1,7 +1,14 @@
 # Ralphex
 
 Ralphex is an autonomous GPT Codex agent loop for ChatGPT Pro accounts, tuned for budget-friendly iterations. Each iteration is a fresh Codex instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
-Demo heartbeat: see `docs/ralph-demo.txt`.
+
+## Start Here
+
+If you do not know which option to pick, use one of these:
+
+- **ChatGPT Pro (recommended)**: `opencode auth login` then run `./ralphex`
+- **OpenAI API key**: `export OPENAI_API_KEY=...` then run `./ralphex`
+- **Already logged into Codex CLI**: run `./ralphex`
 
 ## Prerequisites
 
@@ -17,7 +24,7 @@ Demo heartbeat: see `docs/ralph-demo.txt`.
 
 ## Setup
 
-### Option 1: Copy to your project
+### Copy to your project
 
 Copy the ralph files into your project:
 
@@ -26,40 +33,32 @@ Copy the ralph files into your project:
 mkdir -p scripts/ralph
 cp /path/to/ralph/ralph.sh scripts/ralph/
 cp /path/to/ralph/ralphex scripts/ralph/
-cp /path/to/ralph/raphex scripts/ralph/
 
 # Copy the prompt template for Codex:
 cp /path/to/ralph/CODEX.md scripts/ralph/CODEX.md
 
-chmod +x scripts/ralph/ralph.sh scripts/ralph/ralphex scripts/ralph/raphex
+ chmod +x scripts/ralph/ralph.sh scripts/ralph/ralphex
 ```
 
-## Quick Start: ChatGPT Pro + OpenCode
-
-If you are building on a tight budget with ChatGPT Pro, this is the fastest path with minimal setup. OpenCode handles OAuth so you do not need API keys.
+## Quick Start (Recommended)
 
 1. Copy these files into your project root:
    - `ralph.sh`
    - `ralphex`
-   - `raphex`
    - `CODEX.md`
 2. Make the wrapper executable:
-   - `chmod +x ralphex raphex`
+   - `chmod +x ralphex`
 3. Log in once with OpenCode:
    - `opencode auth login`
 4. Add a `prd.json` to your project root.
-5. Run:
-   - `./ralphex`
-   - or `./raphex`
-
-Ralphex will print the ASCII banner, then run until all stories pass.
+5. Run: `./ralphex`
 
 ## What We Built (Walkthrough)
 
 - **Codex loop with OpenCode fallback**: `ralph.sh` uses the Codex CLI when logged in, and falls back to OpenCode OAuth when not.
 - **One-command runner**: `./ralphex` defaults to `CODEX_DRIVER=opencode` and `CODEX_MODEL=openai/gpt-5.2-codex`.
 - **Active/Deactivated banner**: Ralphex prints a big ASCII banner with `ACTIVE 🟢` or `DEACTIVATED 🔴`.
-- **Deactivation switch**: `./ralphex off` or `./raphex off` creates `.ralphex-disabled`; `./ralphex on` or `./raphex on` removes it; `./ralphex status` reports state.
+- **Deactivation switch**: `./ralphex off` creates `.ralphex-disabled`; `./ralphex on` removes it; `./ralphex status` reports state.
 - **Clean exit when done**: if no stories remain, Codex emits `<promise>COMPLETE</promise>` and the loop stops.
 - **No approval prompts**: Codex runs with approval bypass enabled; the loop proceeds without asking for permissions.
 
@@ -96,57 +95,28 @@ When found, you can still run `ralphex on`, `ralphex off`, or `ralphex status` f
 
 Create `prd.json` with user stories for the loop. Use `prd.json.example` as a template if you want a starting point.
 
-### 2. Run Ralph
+### 2. Run Ralphex
 
 ```bash
-# One-command Codex loop (OpenCode OAuth by default)
-./ralphex [max_iterations]
+# Primary command (recommended)
+./ralphex
 
-# Short alias (typo-friendly)
-./raphex [max_iterations]
-
-# If you installed into scripts/ralph
-./scripts/ralph/ralphex [max_iterations]
-./scripts/ralph/raphex [max_iterations]
-
-# Legacy alias (still works)
-./ralphcodex [max_iterations]
 
 # Toggle Ralphex on/off
 ./ralphex off
 ./ralphex on
 ./ralphex status
 
-# Alias works too
-./raphex off
-./raphex on
-./raphex status
-
-# Run with Codex directly (set CODEX_CMD if needed)
-CODEX_CMD="codex" ./scripts/ralph/ralph.sh --tool codex [max_iterations]
-
 # Cap the loop (optional)
 ./ralph.sh 25
 
 # Bootstrap from example PRD (for demos only):
-PRD_BOOTSTRAP=1 ./scripts/ralph/ralph.sh [max_iterations]
+PRD_BOOTSTRAP=1 ./ralph.sh
 ```
 
 Default is infinite iterations. Pass a number to cap the loop (for example, `./ralph.sh 10`). The loop always runs in Codex mode.
 
 Ralphex assumes full trust: it runs with approval bypass enabled and does not ask for permission prompts. The Codex command is hard-locked to prevent overrides. Use `ralphex off` (or `.ralphex-disabled`) as the emergency stop.
-
-For Codex, set `CODEX_CMD` to the command that accepts prompt text on stdin, for example:
-
-```bash
-CODEX_CMD="codex exec --dangerously-bypass-approvals-and-sandbox" ./scripts/ralph/ralph.sh --tool codex
-
-# If your environment already manages auth (e.g., OpenCode), bypass the login check:
-CODEX_SKIP_LOGIN_CHECK=1 ./scripts/ralph/ralph.sh --tool codex
-
-# Use OpenCode as the Codex driver (uses OpenAI OAuth):
-CODEX_DRIVER=opencode CODEX_MODEL="openai/gpt-5.2-codex" ./scripts/ralph/ralph.sh --tool codex
-```
 
 Ralphex will:
 1. Create a feature branch (from PRD `branchName`)
@@ -184,7 +154,6 @@ RALPH_FORCE=1 ./ralph.sh
 |------|---------|
 | `ralph.sh` | The bash loop that spawns GPT Codex instances (codex only) |
 | `ralphex` | One-command wrapper for Codex/OpenCode |
-| `raphex` | Alias for `ralphex` |
 | `CODEX.md` | Prompt template for GPT Codex |
 | `prd.json` | User stories with `passes` status (the task list) |
 | `prd.json.example` | Example PRD format for reference |
