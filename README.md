@@ -10,6 +10,14 @@ If you do not know which option to pick, use one of these:
 - **OpenAI API key**: `export OPENAI_API_KEY=...` then run `./ralphex`
 - **Already logged into Codex CLI**: run `./ralphex`
 
+## Features
+
+- One-command runner: `./ralphex` starts the loop with Codex/OpenCode
+- OpenCode fallback when Codex CLI is not logged in
+- Safe on/off switch: `ralphex on`, `ralphex off`, `ralphex status`
+- Clean stop when all stories pass (`<promise>COMPLETE</promise>`)
+- Runs without approval prompts (full trust loop)
+
 ## Prerequisites
 
 - GPT Codex CLI or OpenCode wrapper installed and authenticated
@@ -22,45 +30,22 @@ If you do not know which option to pick, use one of these:
 - `jq` installed (`brew install jq` on macOS)
 - A git repository for your project
 
-## Setup
+## Quick Start
 
-### Copy to your project
+1. Copy the runner into your project root:
 
-Copy the ralph files into your project:
+   ```bash
+   # From your project root
+   cp /path/to/ralph/ralph.sh .
+   cp /path/to/ralph/ralphex .
+   cp /path/to/ralph/CODEX.md .
+   chmod +x ralph.sh ralphex
+   ```
 
-```bash
-# From your project root
-mkdir -p scripts/ralph
-cp /path/to/ralph/ralph.sh scripts/ralph/
-cp /path/to/ralph/ralphex scripts/ralph/
-
-# Copy the prompt template for Codex:
-cp /path/to/ralph/CODEX.md scripts/ralph/CODEX.md
-
- chmod +x scripts/ralph/ralph.sh scripts/ralph/ralphex
-```
-
-## Quick Start (Recommended)
-
-1. Copy these files into your project root:
-   - `ralph.sh`
-   - `ralphex`
-   - `CODEX.md`
-2. Make the wrapper executable:
-   - `chmod +x ralphex`
-3. Log in once with OpenCode:
+2. Log in once with OpenCode:
    - `opencode auth login`
-4. Add a `prd.json` to your project root.
-5. Run: `./ralphex`
-
-## What We Built (Walkthrough)
-
-- **Codex loop with OpenCode fallback**: `ralph.sh` uses the Codex CLI when logged in, and falls back to OpenCode OAuth when not.
-- **One-command runner**: `./ralphex` defaults to `CODEX_DRIVER=opencode` and `CODEX_MODEL=openai/gpt-5.2-codex`.
-- **Active/Deactivated banner**: Ralphex prints a big ASCII banner with `ACTIVE 🟢` or `DEACTIVATED 🔴`.
-- **Deactivation switch**: `./ralphex off` creates `.ralphex-disabled`; `./ralphex on` removes it; `./ralphex status` reports state.
-- **Clean exit when done**: if no stories remain, Codex emits `<promise>COMPLETE</promise>` and the loop stops.
-- **No approval prompts**: Codex runs with approval bypass enabled; the loop proceeds without asking for permissions.
+3. Add a `prd.json` to your project root.
+4. Run: `./ralphex`
 
 ## Run From Anywhere
 
