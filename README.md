@@ -1,7 +1,7 @@
 # Ralphex
 
 <p align="center">
-  <img src="assets/ralphex_ascii.png" alt="ralphex_repo_logo" width="770" style="max-width: 100%; height: auto;" />
+  <img src="assets/Ralphex white background.png" alt="ralphex_repo_logo" width="770" style="max-width: 100%; height: auto;" />
 </p>
 
 Ralphex is a GPT Codex/ChatGPT Pro fork of snarktank/ralph, tuned for budget-friendly iterations without Amp or Claude Code subscriptions. Each iteration is a fresh Codex instance with clean context. Memory persists via git history, `progress.txt`, and `prd.json`.
