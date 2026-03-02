@@ -34,7 +34,6 @@ If this saves you money, consider starring the repo.
 - Install a runner:
   - Codex CLI: `npm install -g @openai/codex`
   - OpenCode: https://opencode.ai
-- `jq` installed (`brew install jq` on macOS)
 - A git repository for your project
 
 Authentication (pick one):
